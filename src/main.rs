@@ -7,9 +7,9 @@ use std::time::Instant;
 fn main() {
     let start_time = Instant::now();
 
-    let power_event = Dynamic::builder("power")
+    let power_event = Dynamic::builder("msr")
         .unwrap()
-        .event("energy-pkg")
+        .event("tsc")
         .unwrap()
         .build()
         .unwrap();
