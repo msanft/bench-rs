@@ -7,9 +7,9 @@ use std::time::Instant;
 fn main() {
     let start_time = Instant::now();
 
-    let power_event = Dynamic::builder("msr")
+    let power_event = Dynamic::builder("power")
         .unwrap()
-        .event("tsc")
+        .event("energy-pkg")
         .unwrap()
         .build()
         .unwrap();
@@ -18,7 +18,7 @@ fn main() {
     let retired_instructions_counter = counter_group
         .add(&Builder::new(Hardware::INSTRUCTIONS))
         .unwrap();
-    let power_counter = counter_group.add(&Builder::new(power_event)).unwrap();
+    let power_counter = counter_group.add(&Builder::new(Hardware::CPU_CYCLES)).unwrap();
 
     counter_group.enable().unwrap();
     let vec = (0..=49).collect::<Vec<_>>();
